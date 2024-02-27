@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 using System.Windows.Navigation;
@@ -33,23 +33,23 @@ namespace Trendyol
             Container.RegisterSingleton<LoginWindowViewModel>();
             Container.RegisterSingleton<RegisterWindowViewModel>();
             Container.RegisterSingleton<TrendyolWindowViewModel>();
-            Container.RegisterSingleton<AdminWindowViewModel>();
+            Container.Register<AdminWindowViewModel>();
             Container.RegisterSingleton<ForgotPasswordViewModel>();
-            Container.RegisterSingleton<SuperAdminViewModel>();
+            Container.Register<SuperAdminViewModel>();
             Container.RegisterSingleton<PrivateInfoViewModel>();
             Container.RegisterSingleton<AddressWindowViewModel>();
-            Container.RegisterSingleton<RemoveAccountViewModel>();
-            Container.RegisterSingleton<RemoveCargoViewModel>();
+            Container.Register<RemoveAccountViewModel>();
+            Container.Register<RemoveCargoViewModel>();
             Container.RegisterSingleton<SuperAdminCreateUserViewModel>();
             Container.RegisterSingleton<SuperAdminCreateAdminViewModel>();
-            Container.RegisterSingleton<SuperAdminDeleteAdminViewModel>();
-            Container.RegisterSingleton<SuperAdminDeleteUserViewModel>();
+            Container.Register<SuperAdminDeleteAdminViewModel>();
+            Container.Register<SuperAdminDeleteUserViewModel>();
             Container.RegisterSingleton<SuperAdminAddOrderViewModel>();
-            Container.RegisterSingleton<SuperAdminRemoveOrderViewModel>();
-            Container.RegisterSingleton<SuperAdminDeleteCargoViewModel>();            
-            Container.RegisterSingleton<RemoveOrderViewModel>();
-            Container.RegisterSingleton<HistoryOrderViewModel>();
-            Container.RegisterSingleton<WareHouseViewModel>();
+            Container.Register<SuperAdminRemoveOrderViewModel>();
+            Container.Register<SuperAdminDeleteCargoViewModel>();            
+            Container.Register<RemoveOrderViewModel>();
+            Container.Register<HistoryOrderViewModel>();
+            Container.Register<WareHouseViewModel>();
             Container.RegisterSingleton<AddOrderViewModel>();
             Container.RegisterSingleton<UserBalanceViewModel>();
             Container.RegisterSingleton<AddCargoViewModel>();
@@ -61,6 +61,8 @@ namespace Trendyol
             Container.RegisterSingleton<TrendyolGuestViewModel>();
             Container.RegisterSingleton<User>();
             Container.RegisterSingleton<Products>();
+            Container.Register<Order>();
+            Container.Register<RadioButtons>();
             Container.Verify();
         }
 
