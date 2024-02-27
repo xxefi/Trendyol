@@ -29,5 +29,11 @@ namespace Trendyol.Views
             InitializeComponent();
         }
 
+        private void passBox_PasswordChanged (object sender, RoutedEventArgs e) {
+            if (DataContext != null) {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
+            }
+        }
+
     }
 }
