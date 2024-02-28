@@ -171,7 +171,7 @@ namespace Trendyol.ViewModels
                 () =>
                 {
                     OpenFileDialog file = new();
-                    file.Filter = "Фото (*.jpg;*.jpeg;*.png;*.gif) | *.jpg;*jpeg;*.png;*.gif";
+                    file.Filter = "Выберите изображение (*.jpg;*.jpeg;*.png;*.gif) | *.jpg;*jpeg;*.png;*.gif";
                     if (file.ShowDialog() == true)
                     {
                        _product.Image = File.ReadAllBytes(file.FileName);
