@@ -18,6 +18,11 @@ namespace Trendyol.Services
             _context = context;
         }
 
+        public User GetUser(string email)
+        {
+            return _context.Users.FirstOrDefault(user => user.Email == email);
+        }
+
         public bool UserLogin(string email, string password)
         {
             User user = _context.Users.FirstOrDefault(u => u.Email == email);
@@ -28,10 +33,6 @@ namespace Trendyol.Services
             return false;
         }
 
-        public User GetUser(string email)
-        {
-            return _context.Users.FirstOrDefault(user => user.Email == email);
-        }
 
         public User UserRegister(string name, string surname, string login, string email, string password, string FIN, string phone)
         {
