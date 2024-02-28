@@ -116,13 +116,6 @@ namespace Trendyol.ViewModels
                                 }
                                 
                             }
-
-                            if (_selectedProduct.Count == 0)
-                            {
-                                _context.ProductsForOrders.Remove(_selectedProduct);
-                                _context.SaveChanges();
-                            }
-
                             var product = _addCargoService.AddProduct(_currentUserService.UserId, _selectedProduct.Name, _selectedProduct.Description, _selectedProduct.Price, _selectedProduct.Category, _selectedProduct.Count);
                             Order order = new Order
                             {
