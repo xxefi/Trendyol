@@ -109,7 +109,7 @@ namespace Trendyol.ViewModels
 
                                 else if (_currentUserService.Balance < _selectedProduct.Price * Count)
                                 {
-                                    MessageBox.Show("Недостаточно средств", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Недостаточно средств");
                                     Count = 0;
                                     _navigationService.NavigateTo<WareHouseViewModel>();
                                     return;
