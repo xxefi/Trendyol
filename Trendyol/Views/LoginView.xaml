@@ -14,8 +14,8 @@
     <Grid Margin="0,30,0,0">
 
 
-        <Image Source="/Trendyol.jpg" Margin="-103,-611,-360,-552"
-           Opacity="1">
+        <Image Source="/One.jpg" Margin="-103,-611,-367,-607"
+Opacity="1">
             <Image.Effect>
                 <BlurEffect Radius="10"/>
             </Image.Effect>
@@ -55,16 +55,16 @@
             FontWeight="Bold"
             Margin="0,0,0,20" Width="54"/>
                 <TextBox
-                    md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                    md:TextFieldAssist.UnderlineBrush="Black"
                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
             x:Name="textBoxLogin"
                     Margin="0,0,0,0"
                 Foreground="Black"
                 Background="#fff"
-                    BorderBrush="#f27a1a"
-                    SelectionBrush="#f27a1a"
-                    SelectionTextBrush="#f27a1a"
-                    SelectedText="#f27a1a"
+                    BorderBrush="Black"
+                    SelectionBrush="Black"
+                    SelectionTextBrush="Black"
+                    SelectedText="Black"
                     FontSize="16"       
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="57" Width="276">
                     <md:HintAssist.Hint>
@@ -80,14 +80,14 @@
                 <PasswordBox
                     Margin="0,5,0,0" 
             x:Name="passBox"
-                    md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                    md:TextFieldAssist.UnderlineBrush="Black"
                 Foreground="Black"
-                    PasswordChar="*"
+                    
                 Background="#fff"
-                BorderBrush="#f27a1a"
-                SelectionBrush="#f27a1a"
+                BorderBrush="Black"
+                SelectionBrush="Black"
                     PasswordChanged="passBox_PasswordChanged"
-                SelectionTextBrush="#f27a1a"
+                SelectionTextBrush="Black"
                 FontSize="16"
             Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Height="55" Width="276">
                     <md:HintAssist.Hint>
@@ -106,16 +106,16 @@
                     Content="Сбросить пароль"
                     x:Name="forgotPass"
                     Command="{Binding Forgot}"
-                    BorderBrush="#f27a1a"
+                    BorderBrush="Black"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    Background="#f27a1a"
+                    Background="Black"
                     Foreground="White"
-                    md:ButtonAssist.CornerRadius="10"
+                    md:ButtonAssist.CornerRadius="15"
                     Height="39"
                     Margin="0, 0, 30, 0"
                     HorizontalAlignment="Right"
-                    Width="149"/>
+                    Width="159"/>
                 <TextBlock
                     
                     Text="или" Height="18" RenderTransformOrigin="0.531,0.528" Width="20"/>
@@ -123,12 +123,12 @@
                     Content="Войти как гость"
                     x:Name="guest"
                     Command="{Binding Guest}"
-                    BorderBrush="#f27a1a"
+                    BorderBrush="Black"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    Background="#f27a1a"
+                    Background="Black"
                     Foreground="White"
-                    md:ButtonAssist.CornerRadius="10"
+                    md:ButtonAssist.CornerRadius="15"
                     Margin="0,0,0,0"
                     Height="34"
                     Width="342"/>
@@ -139,12 +139,12 @@
                     HorizontalAlignment="Left"
                     Margin="40, -145, 0, 0"
                     Command="{Binding Login}"
-                BorderBrush="#f27a1a"
+                BorderBrush="Black"
                 BorderThickness="2"
                 Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                Background="#f27a1a"
+                Background="Black"
                 Foreground="White"
-                md:ButtonAssist.CornerRadius="10"
+                md:ButtonAssist.CornerRadius="15"
                     Height="40"
                     Width="149"/>
                 <Button
@@ -157,17 +157,10 @@
                     BorderThickness="2"
                     Foreground="White"
                     Margin="0,5,0,0"
-                    md:ButtonAssist.CornerRadius="10"
+                    md:ButtonAssist.CornerRadius="15"
                     Height="35" Width="342" IsDefault="True"/>
             </StackPanel>
         </Border>
-        <TextBlock
-            Text="Welcome To Trendyol"
-            FontWeight="Bold"
-            md:ShadowAssist.Darken="True"
-            AllowDrop="True"
-            FontSize="80" Margin="274,5,274,607"
-            Foreground="#f27a1a"/>
     </Grid>
 
 </UserControl>
