@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Trendyol.Models;
 using Trendyol.Services;
+using Trendyol.Services.Classes;
 using Trendyol.Services.Interfaces;
 
 namespace Trendyol.ViewModels
@@ -18,6 +19,7 @@ namespace Trendyol.ViewModels
     public class RemoveCargoViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly CurrentUserService _currentUserService;
         private readonly ApplicationDbContext _context;
         private ObservableCollection<Order> _order;
         private Order _selectedOrder;
@@ -35,11 +37,12 @@ namespace Trendyol.ViewModels
             set => Set(ref _selectedOrder, value);
         }
 
-        public RemoveCargoViewModel(INavigationService navigationService, ApplicationDbContext context)
+        public RemoveCargoViewModel(INavigationService navigationService, ApplicationDbContext context, CurrentUserService currentUserService)
         {
             _navigationService = navigationService;
             _context = context;
-            Order = new ObservableCollection<Order>(_context.Orders.ToList());
+            _currentUserService = currentUserService;
+            Order = new ObservableCollection<Order>(_context.Orders.Where(o => o.UserId == _currentUserService.UserId));
         }
 
         public RelayCommand Back

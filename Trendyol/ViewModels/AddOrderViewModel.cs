@@ -171,7 +171,7 @@ namespace Trendyol.ViewModels
                 () =>
                 {
                     OpenFileDialog file = new();
-                    file.Filter = "Выберите изображение (*.jpg;*.jpeg;*.png;*.gif) | *.jpg;*jpeg;*.png;*.gif";
+                    file.Filter = "Фото (*.jpg;*.jpeg;*.png;*.gif) | *.jpg;*jpeg;*.png;*.gif";
                     if (file.ShowDialog() == true)
                     {
                        _product.Image = File.ReadAllBytes(file.FileName);
@@ -221,6 +221,7 @@ namespace Trendyol.ViewModels
                                 SelectedCategory = "";
                                 _product.Image = null;
                                 MessageBox.Show("Товар успешно добавлен на склад");
+                                _navigationService.NavigateTo<AdminWindowViewModel>();
 
                             }
                             else

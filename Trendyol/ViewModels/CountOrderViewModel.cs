@@ -104,18 +104,26 @@ namespace Trendyol.ViewModels
                                 else if (Count == 0)
                                 {
                                     MessageBox.Show("Напишите количество товара", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    Count = 0;
                                     return;
                                 }
 
                                 else if (_currentUserService.Balance < _selectedProduct.Price * Count)
                                 {
-                                    MessageBox.Show("Недостаточно средств");
+                                    MessageBox.Show("Недостаточно средств", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                     Count = 0;
                                     _navigationService.NavigateTo<WareHouseViewModel>();
                                     return;
                                 }
                                 
                             }
+
+                            if (_selectedProduct.Count == 0)
+                            {
+                                _context.ProductsForOrders.Remove(_selectedProduct);
+                                _context.SaveChanges();
+                            }
+
                             var product = _addCargoService.AddProduct(_currentUserService.UserId, _selectedProduct.Name, _selectedProduct.Description, _selectedProduct.Price, _selectedProduct.Category, _selectedProduct.Count);
                             Order order = new Order
                             {

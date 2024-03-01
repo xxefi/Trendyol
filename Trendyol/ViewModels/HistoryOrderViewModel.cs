@@ -48,7 +48,7 @@ namespace Trendyol.ViewModels
             _context = context;
             _currentUserService = currentUserService;
 
-            Order = new ObservableCollection<Order>(_context.Orders.ToList());
+            Order = new ObservableCollection<Order>(_context.Orders.Where(o => o.UserId == _currentUserService.UserId));
         }
 
         public RelayCommand Back
