@@ -71,10 +71,10 @@ Opacity="1">
 
                 </Border>
                 <Image
-                    Source="/Wallet.png" Margin="607,338,695,370"/>
+                    Source="/Wallet.png" Margin="593,332,694,356"/>
                 <TextBlock
-                    FontSize="21"
-                    Margin="683,358,556,385">
+                    FontSize="24"
+                    Margin="683,356,556,385">
                     <Run Text="{Binding Balance}"/>
                     <Run Text="₼"/>
                 </TextBlock>

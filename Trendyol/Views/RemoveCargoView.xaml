@@ -32,7 +32,7 @@ Opacity="1">
  VerticalAlignment="Center"
  Padding="30"
  MaxWidth="150"
- CornerRadius="50" Height="593" RenderTransformOrigin="0.5,0.5">
+ CornerRadius="50" Height="410" RenderTransformOrigin="0.5,0.5">
 
                 <Border.RenderTransform>
                     <TransformGroup>
@@ -69,46 +69,42 @@ Opacity="1">
                     </Button>
                 </StackPanel>
             </Border>
-            <ScrollViewer Margin="420,163,-41,110">
-                <ListBox Grid.Row="1"
+            <ListBox
              ItemsSource="{Binding Order, UpdateSourceTrigger=PropertyChanged}"
              SelectedItem="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}"
              SelectionMode="Single"
              FontSize="17"
              FontWeight="Bold"
-             Height="478" Width="535" Margin="0,0,420,0">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel>
-                                <StackPanel 
+             Height="300" Width="534" Margin="430,254,402,214">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <StackPanel 
                         Grid.Row="1">
-                                    <Label Content="Имя: "/>
-                                    <Label Content="Фамилия: "/>
-                                    <Label Content="FIN: "/>
-                                    <Label Content="Электронная почта: "/>
-                                    <Label Content="Имя продукта: "/>
-                                    <Label Content="Дата заказа: "/>
-                                    <Label Content="Статус: "/>
-                                </StackPanel>
-                                <StackPanel
-                        Grid.Row="1">
-                                    <Label Content="{Binding Users.Name}"/>
-                                    <Label Content="{Binding Users.Surname}"/>
-                                    <Label Content="{Binding Users.FIN}"/>
-                                    <Label Content="{Binding Users.Email}"/>
-                                    <Label Content="{Binding Product}"/>
-                                    <Label Content="{Binding Created}"/>
-                                    <Label Content="{Binding Status}"/>
+                                <Label Content="ID заказа: "/>
+                                <Label Content="TrackingID: "/>
+                                <Label Content="Количество: "/>
+                                <Label Content="Имя товара: "/>
+                                <Label Content="Дата заказа: "/>
+                                <Label Content="Статус заказа: "/>
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Row="1">
+                                <Label Content="{Binding Id}"/>
+                                <Label Content="{Binding TrackingId}"/>
+                                <Label Content="{Binding ProductsCount}"/>
+                                <Label Content="{Binding Product}"/>
+                                <Label Content="{Binding Created}"/>
+                                <Label Content="{Binding Status}"/>
 
-                                </StackPanel>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </ScrollViewer>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         <Button
- Width="64" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFlatLightBgButton}" x:Name="BackCommand" Margin="522,113,0,0" Height="38" HorizontalAlignment="Left" Foreground="#f27a1a" md:ButtonAssist.CornerRadius="8" Command="{Binding Back}" BorderBrush="White" Background="White">
+ Width="64" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFlatLightBgButton}" x:Name="BackCommand" Margin="522,205,0,0" Height="38" HorizontalAlignment="Left" Foreground="#f27a1a" md:ButtonAssist.CornerRadius="8" Command="{Binding Back}" BorderBrush="White" Background="White">
             <md:PackIcon
  Width="63" Kind="ArrowBackCircle" Height="31" HorizontalAlignment="Center"/>
         </Button>

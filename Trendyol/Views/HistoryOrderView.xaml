@@ -71,38 +71,38 @@
             <md:PackIcon
             Kind="ArrowBackCircle" Height="31" Width="63" HorizontalAlignment="Center"/>
         </Button>
-        <ScrollViewer Margin="459,237,397,184">
-            <ListBox Grid.Row="1"
+        <ListBox
           ItemsSource="{Binding Order}"
           SelectedItem="{Binding SelectedOrder}"
           SelectionMode="Single"
           FontSize="17"
           FontWeight="Bold"
-          Height="336" Width="489">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <StackPanel 
+          Height="336" Width="489" Margin="457,223,420,209">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel 
                             Grid.Row="1">
-                                <Label Content="ID заказа: "/>
-                                <Label Content="TrackingID: "/>
-                                <Label Content="Имя заказа: "/>
-                                <Label Content="Дата заказа: "/>
-                                <Label Content="Статус заказа: "/>
-                            </StackPanel>
-                            <StackPanel
-                     Grid.Row="1">
-                                <Label Content="{Binding Id}"/>
-                                <Label Content="{Binding TrackingId}"/>
-                                <Label Content="{Binding Product}"/>
-                                <Label Content="{Binding Created}"/>
-                                <Label Content="{Binding Status}"/>
-                                
-                            </StackPanel>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
+                            <Label Content="ID заказа: "/>
+                            <Label Content="TrackingID: "/>
+                            <Label Content="Количество: "/>
+                            <Label Content="Имя товара: "/>
+                            <Label Content="Дата заказа: "/>
+                            <Label Content="Статус заказа: "/>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1">
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding TrackingId}"/>
+                            <Label Content="{Binding ProductsCount}"/>
+                            <Label Content="{Binding Product}"/>
+                            <Label Content="{Binding Created}"/>
+                            <Label Content="{Binding Status}"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
