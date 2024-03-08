@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Trendyol.Views.RegisterWindow"
+<UserControl x:Class="Trendyol.Views.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,7 @@ Height="768" Width="1366">
 
     <Grid>
 
-        <Image Source="/Trendyol.jpg" Margin="-103,-611,-382,-608"
+        <Image Source="/Upgrated.jpg" Margin="-103,-611,0,-584"
        Opacity="1">
             <Image.Effect>
                 <BlurEffect Radius="10"/>
@@ -36,7 +36,7 @@ Height="768" Width="1366">
         VerticalAlignment="Center"
         Padding="30"
         MaxWidth="150"
-        CornerRadius="50" Height="705" RenderTransformOrigin="0.5,0.5">
+        CornerRadius="50" Height="736" RenderTransformOrigin="0.5,0.5">
 
             <Border.RenderTransform>
                 <TransformGroup>
@@ -210,11 +210,11 @@ SelectionTextBrush="#f27a1a"
                     md:TextFieldAssist.UnderlineBrush="#f27a1a"
                     TextAlignment="Center"
                     Text="{Binding TryPassword, UpdateSourceTrigger=PropertyChanged}"
-                x:Name="trypassBox"
-            Foreground="Black"
+                    x:Name="trypassBox"
+                    Foreground="Black"
                     BorderBrush="#f27a1a"
-SelectionBrush="#f27a1a"
-SelectionTextBrush="#f27a1a"
+                    SelectionBrush="#f27a1a"
+                    SelectionTextBrush="#f27a1a"
             FontSize="16"
             Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55" RenderTransformOrigin="0.5,0.5">
                     <TextBox.RenderTransform>
@@ -233,6 +233,18 @@ SelectionTextBrush="#f27a1a"
                     Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"/>
                     </md:HintAssist.Hint>
                 </TextBox>
+
+                <CheckBox
+                    Background="White"
+                    Foreground="CornflowerBlue"
+                    Style="{StaticResource MaterialDesignActionAccentCheckBox}"
+                    Content="Я даю согласие на обработку моих данных"
+                    FontSize="16"
+                    FontFamily="Italic"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    IsChecked="{Binding Checked, UpdateSourceTrigger=PropertyChanged}" Width="348"/>
+
                 <Button
                     IsEnabled="{Binding RegisterEnabled}"
                     Command="{Binding Register}"
@@ -240,7 +252,7 @@ SelectionTextBrush="#f27a1a"
                 Style="{StaticResource MaterialDesignFlatLightBgButton}"
                 Background="#f27a1a"
                 Foreground="White"
-                Margin="0,20,-5,20" Height="39" Width="401"
+                Margin="0,10,-5,20" Height="39" Width="401"
                     md:ButtonAssist.CornerRadius="10"
                     BorderBrush="#f27a1a"
                     BorderThickness="2"
