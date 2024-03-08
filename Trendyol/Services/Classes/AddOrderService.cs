@@ -17,7 +17,7 @@ namespace Trendyol.Services.Classes
             _context = context;
         }
 
-        public ProductsForOrder AddProductOrder(string name, string description, double price, int count, string category, byte[] _image)
+        public ProductsForOrder AddProductOrder(string name, string description, double price, int count, string category, byte[] image)
         {
             ProductsForOrder productsForOrder = new ProductsForOrder()
             {
@@ -26,7 +26,7 @@ namespace Trendyol.Services.Classes
                 Price = price,
                 Count = count,
                 Category = category,
-                Image = _image
+                Image = image
             };
             return productsForOrder;
         }
