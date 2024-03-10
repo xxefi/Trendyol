@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using Trendyol.Models;
 using Trendyol.Services;
 using Trendyol.Services.Interfaces;
+using System.Windows.Input;
 
 namespace Trendyol.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Trendyol.ViewModels
         private readonly ApplicationDbContext _context;
         private ObservableCollection<Order> _order;
         private Order _selectedOrder;
-
+        private string _search;
 
         public ObservableCollection<Order> Order
         {
@@ -32,6 +33,21 @@ namespace Trendyol.ViewModels
             get => _selectedOrder;
             set => Set(ref _selectedOrder, value);
         }
+
+        public string Search
+        {
+            get => _search;
+            set
+            {
+                if (_search != value)
+                {
+                    Set(ref _search, value);
+                    Filter();
+                    
+                }
+            }
+        }
+
 
         public SuperAdminDeleteCargoViewModel(INavigationService navigationService, ApplicationDbContext context)
         {
@@ -47,6 +63,27 @@ namespace Trendyol.ViewModels
                 _navigationService.NavigateTo<SuperAdminViewModel>();
             });
         }
+
+        public RelayCommand SearchCommand
+        {
+            get => new(
+                () =>
+                {
+                    Filter();   
+                });
+        }
+
+        public async Task Filter()
+        {
+            var filterOrder = await Task.Run(() =>
+            {
+                return _context.Orders
+                        .Where(o => o.Product.Contains(Search))
+                        .ToList();
+            });
+
+            Order = new ObservableCollection<Order>(filterOrder);
+        } 
 
         public RelayCommand Delete
         {
