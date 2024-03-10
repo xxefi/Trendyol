@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -104,7 +104,6 @@ namespace Trendyol.ViewModels
                                 else if (Count == 0)
                                 {
                                     MessageBox.Show("Напишите количество товара", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    Count = 0;
                                     return;
                                 }
 
