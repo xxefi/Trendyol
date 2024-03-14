@@ -117,7 +117,7 @@ namespace Trendyol.ViewModels
                                 
                             }
 
-                            var product = _addCargoService.AddProduct(_currentUserService.UserId, _selectedProduct.Name, _selectedProduct.Description, _selectedProduct.Price, _selectedProduct.Category, _selectedProduct.Count);
+                            var product = _addCargoService.AddProduct(_currentUserService.UserId, _selectedProduct.Name, _selectedProduct.Description, _selectedProduct.Price, _selectedProduct.Category, Count);
                             Order order = new Order
                             {
                                 UserId = _currentUserService.UserId,
