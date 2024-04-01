@@ -1,0 +1,298 @@
+﻿<UserControl x:Class="Trendyol.Views.TrendyolGuestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=viewModel:TrendyolGuestViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid Margin="0,0,10,0">
+            <Image
+            Source="/ty-web.png" Margin="446,304,176,304"/>
+            <Grid Background="#f27a1a" Margin="-272,253,859,256" RenderTransformOrigin="0.5,0.5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="304*"/>
+                    <ColumnDefinition Width="449*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200*"/>
+                </Grid.RowDefinitions>
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.066"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Image Source="/ty-web.png"
+           
+           RenderTransformOrigin="0.5,0.5" Margin="313,46,-39,31"
+           Cursor="Pen" Grid.Column="1">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="-0.001"/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform X="0.003"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock
+        Text="Версия: 0.0.0.1"
+        HorizontalAlignment="Left"
+        FontWeight="Bold"
+        VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="315,122,0,0" Width="91" Grid.Column="1" Height="19">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <Button
+                Command="{Binding Quit}"
+                Background="#f27a1a"
+                Style="{StaticResource  MaterialDesignFlatDarkButton}"
+                HorizontalAlignment="Left" Width="258" RenderTransformOrigin="0.5,0.5" Margin="-101,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="63">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+    Width="53"
+                Foreground="#fff"
+    Height="37"
+    Kind="ExitToApp"/>
+                        <TextBlock
+    HorizontalAlignment="Center"
+    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+    Foreground="Black"
+    FontSize="20"
+                FontWeight="Bold"
+    VerticalAlignment="Center">
+    Выйти
+                        </TextBlock>
+                    </StackPanel>
+
+                </Button>
+                <Button
+                Command="{Binding Function}"
+        Background="#f27a1a"
+        Style="{StaticResource MaterialDesignFlatDarkButton}"
+        
+        HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="177,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="46" Grid.Column="1">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                Width="60"
+                Foreground="White"
+                Height="37"
+                Kind="TooltipAccount"/>
+                        <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                Foreground="Black"
+                FontSize="20"
+                FontWeight="Bold"
+                VerticalAlignment="Center"><Run Text="Аккаунт"
+                                                FontWeight="Bold"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                Command="{Binding Function}"
+        Background="#f27a1a"
+        Style="{StaticResource MaterialDesignFlatDarkButton}"
+        HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="132,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="46" Grid.Column="1">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                Width="48"
+                Foreground="#fff"
+                Height="37"
+                Kind="AddressMarker"/>
+                        <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                Foreground="Black"
+                FontSize="20"
+                FontWeight="Bold"
+                VerticalAlignment="Center"><Run Text="Адрес склада"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                Command="{Binding Function}"
+        Background="#f27a1a"
+        Style="{StaticResource MaterialDesignFlatDarkButton}"
+        HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="203,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="54" Grid.ColumnSpan="2">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                Width="62"
+                Foreground="#fff"
+                Height="37"
+                Kind="BoxSearch"/>
+                        <TextBlock
+                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                Foreground="Black"
+                FontWeight="Bold"
+                FontSize="20"
+                VerticalAlignment="Center" Width="168"><Run Text="История заказов"/></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button
+            Command="{Binding Function}"
+            Background="#f27a1a"
+            Style="{StaticResource MaterialDesignFlatDarkButton}"
+            HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="301,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="54" Grid.ColumnSpan="2">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                    Width="62"
+                    Foreground="#fff"
+                    Height="37"
+                    Kind="ShoppingCart"/>
+                        <TextBlock
+                    Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                    Foreground="Black"
+                    FontWeight="Bold"
+                    FontSize="20"
+                    VerticalAlignment="Center" Width="131"><Run Text="Купить товар"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                Command="{Binding Function}"
+        Background="#f27a1a"
+        Style="{StaticResource MaterialDesignFlatDarkButton}"
+        HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="39,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="46" Grid.Column="1">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Width="193">
+                        <materialDesign:PackIcon
+                Width="55"
+                Foreground="#fff"
+                Height="37"
+                Kind="BoxAdd"/>
+                        <TextBlock
+                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                Foreground="Black"
+                FontSize="20"
+                FontWeight="Bold"
+                VerticalAlignment="Center" Width="136" Height="33"><Run Text="Сделать заказ"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                Command="{Binding Function}"
+                Background="#f27a1a"
+                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                HorizontalAlignment="Left" Width="241" RenderTransformOrigin="0.5,0.5" Margin="262,114,0,0" IsDefault="True" VerticalAlignment="Top" Height="46" Grid.ColumnSpan="2">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Width="210">
+                        <materialDesign:PackIcon
+                        Width="45"
+                        Foreground="#fff"
+                        Height="37"
+                        Kind="RemoveBox"/>
+                        <TextBlock
+                        Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                        Foreground="Black"
+                        TextAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold" Width="155" Height="33"><Run Text="Отменить заказ"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                Command="{Binding Function}"
+                Background="#f27a1a"
+                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                HorizontalAlignment="Left" Width="259" RenderTransformOrigin="0.5,0.5" Margin="86,0,0,0" IsDefault="True" VerticalAlignment="Center" Height="46" Grid.Column="1">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                        Width="48"
+                        Foreground="#fff"
+                        Height="37"
+                        Kind="Wallet"/>
+                        <TextBlock
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                        Foreground="Black"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"><Run Text="Баланс"/></TextBlock>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+            <TextBlock
+                Text="Здесь вы можете посмотреть, как выглядит главное окно Trendyol"
+                TextAlignment="Center"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#f27a1a"
+                Margin="478,477,192,249"/>
+            <TextBlock
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</UserControl>

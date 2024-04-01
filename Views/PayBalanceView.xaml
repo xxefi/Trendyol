@@ -1,0 +1,202 @@
+﻿<UserControl x:Class="Trendyol.Views.PayBalanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance Type=viewModel:PayBalanceViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid>
+            <Grid>
+                <Image Source="/Trendyol2.jpg" Margin="-44,-250,-14,-248"
+   Opacity="1">
+                    <Image.Effect>
+                        <BlurEffect Radius="10"/>
+                    </Image.Effect>
+                </Image>
+                <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+                <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleX="-1"/>
+                    </Image.RenderTransform>
+                </Image>
+
+                <TabControl/>
+                <Border
+    MinWidth="500"
+    Margin="51,0,35,0"
+    Background="White"
+    VerticalAlignment="Center"
+    Padding="30"
+    MaxWidth="150"
+    CornerRadius="50" Height="466" RenderTransformOrigin="0.5,0.5">
+
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform AngleX="-0.004"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.25"/>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <Border.Effect>
+                        <DropShadowEffect
+        BlurRadius="100"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock
+            Text="Пополнение баланса"
+            Foreground="Black"
+            TextAlignment="Center"
+            FontSize="20"
+            FontWeight="Bold"
+            Margin="0,0,0,20" Width="218"/>
+                        <Grid/>
+                        <TextBox
+                            BorderBrush="#f27a1a"
+                            SelectionBrush="#f27a1a"
+                            SelectionTextBrush="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                        TextAlignment="Center"
+                Text="{Binding Amount}"
+            x:Name="sum"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55">
+                            <md:HintAssist.Hint>
+                                <TextBlock
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                    Foreground="Black"
+                                    md:ColorZoneAssist.Foreground="Black"
+                                FontSize="16"
+                                Text="✍ Введите сумму..."
+                                TextAlignment="Center"/>
+                            </md:HintAssist.Hint>
+                        </TextBox>
+                        <TextBox
+                            Margin="0,5,0,0"
+                            BorderBrush="#f27a1a"
+                            SelectionBrush="#f27a1a"
+                            SelectionTextBrush="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                        TextAlignment="Center"
+                Text="{Binding Card}"
+            x:Name="card"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="56">
+                            <md:HintAssist.Hint>
+                                <TextBlock
+                                    Foreground="Black"
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                FontSize="16"
+                                Text="✍ Введите номер карты..."
+                                TextAlignment="Center"/>
+                            </md:HintAssist.Hint>
+
+                        </TextBox>
+                        <TextBox
+                            Margin="0,5,0,0"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Month}"
+            x:Name="textBoxLogin"
+                            BorderBrush="#f27a1a"
+                            SelectionBrush="#f27a1a"
+                            SelectionTextBrush="#f27a1a"
+                        TextAlignment="Center"
+           Foreground="Black"
+           FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55">
+                            <md:HintAssist.Hint>
+                                <TextBlock
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                        FontSize="16"
+                                    Foreground="Black"
+                        Text="✍ Введите месяц..."
+                        TextAlignment="Center"/>
+                            </md:HintAssist.Hint>
+                        </TextBox>
+                        <TextBox
+                            Margin="0,5,0,0"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Year}"
+        x:Name="year"
+                        TextAlignment="Center"
+        Foreground="Black"
+        FontSize="16"
+                            BorderBrush="#f27a1a"
+                            SelectionBrush="#f27a1a"
+                            SelectionTextBrush="#f27a1a"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="284" Height="55">
+                            <md:HintAssist.Hint>
+                                <TextBlock
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                    Foreground="Black"
+                            FontSize="16"
+                            Text="✍ Введите год..."
+                            TextAlignment="Center"/>
+                            </md:HintAssist.Hint>
+                        </TextBox>
+                        <TextBox
+                            Margin="0,5,0,0"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+        Text="{Binding CVV}"
+                        x:Name="cvv"
+                        TextAlignment="Center"
+                        Foreground="Black"
+                        FontSize="16"
+                            BorderBrush="#f27a1a"
+                            SelectionBrush="#f27a1a"
+                            SelectionTextBrush="#f27a1a"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="284" Height="57">
+                            <md:HintAssist.Hint>
+                                <TextBlock
+                                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                    Foreground="Black"
+                    FontSize="16"
+                    Text="✍ Введите CVV код..."
+                    TextAlignment="Center"/>
+                            </md:HintAssist.Hint>
+                        </TextBox>
+                        <Button
+                Command="{Binding Pay}"
+            Content="Пополнить баланс"
+            Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        FontSize="16"
+            Foreground="#f27a1a"
+            Margin="0,15,-10,20" Height="39" Width="401"
+                md:ButtonAssist.CornerRadius="10"
+                BorderBrush="#f27a1a"
+                BorderThickness="2"/>
+
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+            <Button
+       Name="BackCommand"
+       Command="{Binding Back}"
+   Foreground="#f27a1a"
+   Style="{StaticResource MaterialDesignFlatLightBgButton}"
+    Background="White"
+            BorderBrush="White"
+HorizontalAlignment="Left"
+       md:ButtonAssist.CornerRadius="8"
+VerticalAlignment="Top" Height="38" Width="64" Margin="522,176,0,0">
+                <md:PackIcon
+   Kind="ArrowBackCircle" Height="31" Width="63" HorizontalAlignment="Center"/>
+            </Button>
+            <Button
+                Command="{Binding QuestionCVV}"
+                Content="CVV?"
+                Style="{StaticResource MaterialDesignPaperDarkButton}"
+                Foreground="#f27a1a"
+                BorderBrush="#f27a1a"
+                md:ButtonAssist.CornerRadius="10" Margin="842,483,459,253"/>
+        </Grid>
+    </Grid>
+</UserControl>

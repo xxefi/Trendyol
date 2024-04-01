@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="Trendyol.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trendyol.Views"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodels="clr-namespace:Trendyol.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:LoginWindowViewModel}"
+             mc:Ignorable="d"
+        UseLayoutRounding="True"
+        Background="Black" Height="768" Width="1366">
+
+    <Grid Margin="0,30,0,0">
+        <Image Source="/Trendyol.jpg" Margin="-103,-611,-367,-607"
+            Opacity="1">
+            <Image.Effect>
+                <BlurEffect Radius="10"/>
+            </Image.Effect>
+        </Image> 
+        <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+        <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="-1"/>
+            </Image.RenderTransform>
+        </Image>
+        <Border
+        MinWidth="470"
+    Margin="2,0,-14,0"
+    Background="#fff"
+    VerticalAlignment="Center"
+    Padding="30"
+    MaxWidth="150"
+    CornerRadius="38" Height="393" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform AngleX="-0.304"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.745"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.Effect>
+                <DropShadowEffect
+                BlurRadius="100"/>
+            </Border.Effect>
+
+
+            <StackPanel>
+                <TextBlock
+            Text="Вход"
+            FontSize="20"
+            FontWeight="Bold"
+            Margin="0,0,0,20" Width="54"/>
+                <TextBox
+                    md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+            x:Name="textBoxLogin"
+                    
+                    md:TextFieldAssist.TextFieldCornerRadius="15"
+                    Margin="0,0,0,0"
+                Foreground="Black"
+                Background="#fff"
+                    SelectionBrush="#f27a1a"
+                    SelectionTextBrush="#f27a1a"
+                    SelectedText="#f27a1a"
+                    FontSize="16"       
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="57" Width="276">
+                    <md:HintAssist.Hint>
+                        <TextBlock
+                    FontSize="16"
+                    TextAlignment="Center"
+                    Text="✍ Введите e-mail..."
+                            Foreground="Black"
+                    Style="{StaticResource MaterialDesignButtonTextBlock}" Width="210"/>
+                    </md:HintAssist.Hint>
+                </TextBox>
+                <Grid/>
+                <PasswordBox
+                    Margin="0,5,0,0" 
+            x:Name="passBox"
+                    md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Foreground="Black"
+                    md:TextFieldAssist.TextFieldCornerRadius="15"
+                Background="#fff"
+                SelectionBrush="#f27a1a"
+                    PasswordChanged="passBox_PasswordChanged"
+                SelectionTextBrush="#f27a1a"
+                FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Height="55" Width="276">
+                    <md:HintAssist.Hint>
+                        <TextBlock
+                FontSize="16"
+                            TextAlignment="Center"
+                Text="✍ Введите пароль..."
+                            Foreground="Black"
+                Style="{StaticResource MaterialDesignButtonTextBlock}" Width="210"/>
+                    </md:HintAssist.Hint>
+                </PasswordBox>
+                <TextBlock
+                Height="22"
+                Width="218"/>
+                <Button
+                    Content="Сбросить пароль"
+                    x:Name="forgotPass"
+                    Command="{Binding Forgot}"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Foreground="Black"
+                    md:ButtonAssist.CornerRadius="15"
+                    Height="39"
+                    Margin="0, 0, 30, 0"
+                    HorizontalAlignment="Right"
+                    Width="159"/>
+                <TextBlock
+                    
+                    Text="или" Height="18" RenderTransformOrigin="0.531,0.528" Width="20"/>
+                <Button
+                    Content="Войти как гость"
+                    x:Name="guest"
+                    Command="{Binding Guest}"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Foreground="Black"
+                    md:ButtonAssist.CornerRadius="15"
+                    Margin="0,0,0,0"
+                    Height="34"
+                    Width="342"/>
+                <Button
+                Content="Войти"
+                    IsEnabled="{Binding LoginEnabled}"
+                x:Name="AuthButton"
+                    HorizontalAlignment="Left"
+                    Margin="40, -145, 0, 0"
+                    Command="{Binding Login}"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Style="{StaticResource MaterialDesignPaperDarkButton}"
+                Foreground="Black"
+                md:ButtonAssist.CornerRadius="15"
+                    Height="40"
+                    Width="149"/>
+                <Button
+                    Content="Создать аккаунт"
+                    Command="{Binding Create}"
+                    x:Name="createAccount"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    BorderBrush="#f27a1a"
+                    BorderThickness="2"
+                    Foreground="#f27a1a"
+                    Margin="0,5,0,0"
+                    md:ButtonAssist.CornerRadius="15"
+                    Height="35" Width="342" IsDefault="True"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

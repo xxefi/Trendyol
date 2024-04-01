@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Trendyol.Views.SuperAdminRemoveOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance Type=viewModel:SuperAdminRemoveOrderViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid>
+            <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+            <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="-1"/>
+                </Image.RenderTransform>
+            </Image>
+
+            <TabControl Margin="14,-23,-14,23"/>
+            <Border
+MinWidth="600"
+Margin="38,0,22,0"
+Background="#fff"
+VerticalAlignment="Center"
+Padding="30"
+MaxWidth="150"
+CornerRadius="50" Height="593" RenderTransformOrigin="0.5,0.5">
+
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1"/>
+                        <SkewTransform AngleX="-0.004"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.25"/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <Border.Effect>
+                    <DropShadowEffect
+    BlurRadius="100"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock
+        Text="Удалить товар из склада"
+        TextAlignment="Center"
+        FontSize="20"
+        FontWeight="Bold"
+        Margin="0,0,0,20" Width="429"/>
+                    <Grid/>
+                </StackPanel>
+            </Border>
+            <ScrollViewer Margin="420,163,-41,130">
+                <ListBox Grid.Row="1"
+            ItemsSource="{Binding ProductsForOrders, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding SelectedProductsForOrders, UpdateSourceTrigger=PropertyChanged}"
+            SelectionMode="Single"
+            FontSize="17"
+            FontWeight="Bold"
+            Height="463" Width="534" Margin="0,0,420,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <StackPanel 
+                       Grid.Row="1">
+                                    <Label Content="ID товара: "/>
+                                    <Label Content="Имя товара: "/>
+                                    <Label Content="Описание товара: "/>
+                                    <Label Content="Категория товара: "/>
+                                    <Label Content="Количество товара: "/>
+                                    <Label Content="Цена товара: "/>
+                                    <Label Content="Фото товара: "/>
+                                </StackPanel>
+                                <StackPanel
+                       Grid.Row="1">
+                                    <Label Content="{Binding Id}"/>
+                                    <Label Content="{Binding Name}"/>
+                                    <Label Content="{Binding Description}"/>
+                                    <Label Content="{Binding Category}"/>
+                                    <Label Content="{Binding Count}"/>
+                                    <Label Content="{Binding Price}"/>
+                                    <Image
+                                       Width="100"
+                                       Height="100"
+                                       Source="{Binding Image}"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+            <Button
+            Command="{Binding Remove}"
+        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+        Background="Red"
+                    FontSize="16"
+        Foreground="White"
+        Margin="653,644,625,92"
+            md:ButtonAssist.CornerRadius="10"
+            BorderBrush="Red"
+            BorderThickness="2">
+                <md:PackIcon
+                           Kind="RemoveCircle" Height="24" Width="66" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+        <Button
+Width="64" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFlatLightBgButton}" x:Name="BackCommand" Margin="500,113,0,0" Height="38" HorizontalAlignment="Left" Foreground="#f27a1a" md:ButtonAssist.CornerRadius="8" Command="{Binding Back}" BorderBrush="White" Background="White">
+            <md:PackIcon
+Width="63" Kind="ArrowBackCircle" Height="31" HorizontalAlignment="Center"/>
+        </Button>
+    </Grid>
+</UserControl>

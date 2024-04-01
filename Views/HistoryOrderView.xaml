@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="Trendyol.Views.HistoryOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModel:HistoryOrderViewModel}"
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Image Source="/Trendyol2.jpg" Margin="-44,-250,-14,-248"
+   Opacity="1">
+            <Image.Effect>
+                <BlurEffect Radius="10"/>
+            </Image.Effect>
+        </Image>
+        <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+        <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="-1"/>
+            </Image.RenderTransform>
+        </Image>
+
+        <TabControl/>
+        <Border
+    MinWidth="600"
+    Margin="2,0,-14,0"
+    Background="White"
+    VerticalAlignment="Center"
+    Padding="30"
+    MaxWidth="150"
+    CornerRadius="50" Height="458" RenderTransformOrigin="0.5,0.5">
+
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform AngleX="-0.004"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.25"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Border.Effect>
+                <DropShadowEffect
+        BlurRadius="100"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock
+            Foreground="Black"
+            Text="История заказов"
+                TextAlignment="Center"
+            FontSize="20"
+            FontWeight="Bold"
+            Margin="0,0,0,20" Width="236"/>
+                <Grid/>
+
+
+            </StackPanel>
+
+        </Border>
+        <Button
+        x:Name="BackCommand"
+        Command="{Binding Back}"
+        Foreground="#f27a1a"
+        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+        Background="White"
+        BorderBrush="White"
+        HorizontalAlignment="Left"
+        md:ButtonAssist.CornerRadius="8"
+        VerticalAlignment="Top" Height="38" Width="64" Margin="526,180,0,0">
+            <md:PackIcon
+            Kind="ArrowBackCircle" Height="31" Width="63" HorizontalAlignment="Center"/>
+        </Button>
+
+        <Button
+            Command="{Binding Document}"
+            Content="           Посмотреть чек"
+            Margin="592,571,592,165"
+            md:ButtonAssist.CornerRadius="15"/>
+
+        <md:PackIcon
+        Kind="File"
+            Foreground="White"
+            Height="32" Width="56" Margin="601,571,0,0"/>
+
+        <ListBox
+          ItemsSource="{Binding Order}"
+          SelectedItem="{Binding SelectedOrder}"
+          SelectionMode="Single"
+          FontSize="17"
+          FontWeight="Bold"
+            Foreground="Black"
+          Height="336" Width="489" Margin="457,223,420,209">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel 
+                            Grid.Row="1">
+                            <Label Content="ID заказа: "/>
+                            <Label Content="TrackingID: "/>
+                            <Label Content="Количество: "/>
+                            <Label Content="Имя товара: "/>
+                            <Label Content="Дата заказа: "/>
+                            <Label Content="Статус заказа: "/>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1">
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding TrackingId}"/>
+                            <Label Content="{Binding ProductsCount}"/>
+                            <Label Content="{Binding Product}"/>
+                            <Label Content="{Binding Created}"/>
+                            <Label Content="{Binding Status}"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

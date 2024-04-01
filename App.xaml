@@ -1,0 +1,138 @@
+﻿    <Application x:Class="Trendyol.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Trendyol"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:view="clr-namespace:Trendyol.Views">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
+                <view:MainWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LoginWindowViewModel}">
+                <view:LoginWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RegisterWindowViewModel}">
+                <view:RegisterWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:TrendyolWindowViewModel}">
+                <view:TrendyolWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ForgotPasswordViewModel}">
+                <view:ForgotPasswordWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AdminWindowViewModel}">
+                <view:AdminWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminViewModel}">
+                <view:SuperAdminWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:PrivateInfoViewModel}">
+                <view:PrivateInfoWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddressWindowViewModel}">
+                <view:AddressWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RemoveAccountViewModel}">
+                <view:RemoveAccountWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddCargoViewModel}">
+                <view:AddCargoWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RemoveCargoViewModel}">
+                <view:RemoveCargoView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminCreateUserViewModel}">
+                <view:SuperAdminCreateUserView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminCreateAdminViewModel}">
+                <view:SuperAdminCreateAdminView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminDeleteAdminViewModel}">
+                <view:SuperAdminDeleteAdminView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminDeleteUserViewModel}">
+                <view:SuperAdminDeleteUserView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HistoryOrderViewModel}">
+                <view:HistoryOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddOrderViewModel}">
+                <view:AddOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:WareHouseViewModel}">
+                <view:WareHouseView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:UserBalanceViewModel}">
+                <view:UserBalanceView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CountOrderViewModel}">
+                <view:CountOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:PayBalanceViewModel}">
+                <view:PayBalanceView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ExampleCVVViewModel}">
+                <view:ExampleCVVView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:RemoveOrderViewModel}">
+                <view:RemoveOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminAddOrderViewModel}">
+                <view:SuperAdminAddOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminRemoveOrderViewModel}">
+                <view:SuperAdminRemoveOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SuperAdminDeleteCargoViewModel}">
+                <view:SuperAdminDeleteCargoView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:TrendyolGuestViewModel}">
+                <view:TrendyolGuestView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DocumentOrderViewModel}">
+                <view:DocumentOrderView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DeveloperContactViewModel}">
+                <view:DeveloperContact/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

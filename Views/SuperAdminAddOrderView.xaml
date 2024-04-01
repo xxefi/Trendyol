@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="Trendyol.Views.SuperAdminAddOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance Type=viewModel:SuperAdminAddOrderViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid>
+            <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+            <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="-1"/>
+                </Image.RenderTransform>
+            </Image>
+
+            <TabControl/>
+            <Border
+    MinWidth="570"
+    Margin="2,0,-14,0"
+    Background="#fff"
+    VerticalAlignment="Center"
+    Padding="30"
+    MaxWidth="150"
+    CornerRadius="50" Height="508" RenderTransformOrigin="0.5,0.5">
+
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1"/>
+                        <SkewTransform AngleX="-0.004"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.25"/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <Border.Effect>
+                    <DropShadowEffect
+        BlurRadius="100"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock
+            Text="Добавление товара в склад"
+            TextAlignment="Center"
+            FontSize="20"
+            FontWeight="Bold"
+            Margin="0,0,0,20" Width="316"/>
+                    <Grid/>
+                    <TextBox
+                        BorderBrush="#f27a1a"
+                        SelectionBrush="#f27a1a"
+                        SelectionTextBrush="#f27a1a"
+                        SelectedText="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                        TextAlignment="Center"
+                Text="{Binding Name}"
+            x:Name="nameProduct"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="56">
+                        <md:HintAssist.Hint>
+                            <TextBlock
+                                Foreground="Black"
+                                FontSize="16"
+                                Style="{StaticResource MaterialDesignButtonTextBlock}"
+                                Text="✍ Введите название продукта..."
+                                TextAlignment="Center"/>
+                        </md:HintAssist.Hint>
+                    </TextBox>
+                    <TextBox
+                        Margin="0,5,0,0"
+                        BorderBrush="#f27a1a"
+                        SelectionBrush="#f27a1a"
+                        SelectionTextBrush="#f27a1a"
+                        SelectedText="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                        TextAlignment="Center"
+                Text="{Binding Description}"
+            x:Name="lastNameBoxLogin"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="56">
+                        <md:HintAssist.Hint>
+                            <TextBlock
+                                Foreground="Black"
+                                Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                FontSize="16"
+                                Text="✍ Введите описания..."
+                                TextAlignment="Center"/>
+                        </md:HintAssist.Hint>
+
+                    </TextBox>
+                    <TextBox
+                        Margin="0,5,0,0"
+                        BorderBrush="#f27a1a"
+                        SelectionBrush="#f27a1a"
+                        SelectionTextBrush="#f27a1a"
+                        SelectedText="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Price}"
+            x:Name="textBoxLogin"
+            TextAlignment="Center"
+           Foreground="Black"
+           FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="56">
+                        <md:HintAssist.Hint>
+                            <TextBlock
+                        FontSize="16"
+                                Style="{StaticResource MaterialDesignButtonTextBlock}" Width="250"
+                                Foreground="Black"
+                        Text="✍ Введите цену..."
+                        TextAlignment="Center"/>
+                        </md:HintAssist.Hint>
+                    </TextBox>
+                    <TextBox
+                        Margin="0,5,0,0"
+                        BorderBrush="#f27a1a"
+                        SelectionBrush="#f27a1a"
+                        SelectionTextBrush="#f27a1a"
+                        SelectedText="#f27a1a"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Count}"
+        x:Name="emailBox"
+                        TextAlignment="Center"
+        Foreground="Black"
+        FontSize="16"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="56">
+                        <md:HintAssist.Hint>
+                            <TextBlock
+                            FontSize="16"
+                                Foreground="Black"
+                                Style="{StaticResource MaterialDesignButtonTextBlock}" 
+                            Text="✍ Введите количество..."
+                            TextAlignment="Center" Width="259"/>
+                        </md:HintAssist.Hint>
+                    </TextBox>
+                    
+                    <TextBlock
+                        Text="✍ Выберите категорию..."
+                        FontSize="17"
+                        TextAlignment="Center"/>
+                    <ComboBox
+                        Margin="0,5,0,0"
+                        ItemsSource="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                        Foreground="Black"
+                        FontSize="16"
+                        BorderBrush="#f27a1a"
+                        Width="284" Height="37">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
+
+
+                    <Button
+                        IsEnabled="{Binding EnabledPhoto}"
+                        Command="{Binding Image}"
+                        Content="Выбрать фото"
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        Background="#f27a1a"
+                        FontSize="16"
+                        Foreground="White"
+                        Margin="0,10,-10,0"
+                        Height="39"
+                        Width="401"
+                        md:ButtonAssist.CornerRadius="10"
+                        BorderBrush="#f27a1a"
+                        BorderThickness="2"/>
+                    <Image
+                        Source="{Binding ImageBox}"
+                        Name="selectedImage"
+                        Width="98"
+                        Height="205"
+                        Margin="0,-300,-410,0"/>
+                    <Button
+                    IsEnabled="{Binding EnabledAdd}"
+                    Command="{Binding Add}"
+                    Content="Добавить товар"
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    Background="#f27a1a"
+                    FontSize="16"
+                    Foreground="White"
+                    Margin="0, 10,-10,10" Height="39" Width="401"
+                    md:ButtonAssist.CornerRadius="10"
+                    BorderBrush="#f27a1a"
+                    BorderThickness="2"/>
+                </StackPanel>
+
+            </Border>
+        </Grid>
+        <Button
+       Name="BackCommand"
+       Command="{Binding Back}"
+   Foreground="#f27a1a"
+   Style="{StaticResource MaterialDesignFlatLightBgButton}"
+    Background="White"
+            BorderBrush="White"
+HorizontalAlignment="Left"
+       md:ButtonAssist.CornerRadius="8"
+VerticalAlignment="Top" Height="38" Width="64" Margin="492,155,0,0">
+            <md:PackIcon
+   Kind="ArrowBackCircle" Height="31" Width="63" HorizontalAlignment="Center"/>
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Trendyol.Views.AdminWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModels="clr-namespace:Trendyol.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Background="#fff"
+             d:DataContext="{d:DesignInstance Type=viewModels:AdminWindowViewModel}"
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        
+        <Image
+            Source="/ty-web.png" Margin="10,-1,1099,661"/>
+        <TextBox Text="{Binding Search}"
+                 Grid.Column="0"
+                 Margin="40,124,950,605"
+                 FontSize="18"/>
+        <Button
+            Command="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}"
+            Content="Найти"
+            Width="80"
+            FontSize="15" Margin="434,131,852,605"
+            materialDesign:ButtonAssist.CornerRadius="12">
+        </Button>
+        <Button
+            Command="{Binding AddOrder}"
+            Content="Добавить товар в склад"
+            Width="210"
+            FontSize="15"
+            materialDesign:ButtonAssist.CornerRadius="12"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top" Margin="0,131,225,0"/>
+        <ListBox
+                     ItemsSource="{Binding Order, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedItem="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}"
+                     SelectionMode="Single"
+                     FontSize="17"
+                     Height="455" Width="489" Margin="40,211,837,102">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel 
+                                Grid.Row="1">
+                            <Label Content="Имя: "/>
+                            <Label Content="Фамилия: "/>
+                            <Label Content="FIN: "/>
+                            <Label Content="Электронная почта: "/>
+                            <Label Content="ID продукта: "/>
+                            <Label Content="Имя продукта: "/>
+                            <Label Content="Дата заказа: "/>
+                            <Label Content="Статус: "/>
+                        </StackPanel>
+                        <StackPanel
+                                Grid.Row="1">
+                            <Label Content="{Binding Users.Name}"/>
+                            <Label Content="{Binding Users.Surname}"/>
+                            <Label Content="{Binding Users.FIN}"/>
+                            <Label Content="{Binding Users.Email}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Product}"/>
+                            <Label Content="{Binding Created}"/>
+                            <Label Content="{Binding Status, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button
+            
+            Command="{Binding Exit}"
+            Background="Red"
+            BorderBrush="Red"
+            Margin="1234,722,29,14"
+            materialDesign:ButtonAssist.CornerRadius="12">
+            <materialDesign:PackIcon
+                Kind="ExitToApp" Height="30" Width="73" VerticalAlignment="Center"/>
+        </Button>
+
+        <RadioButton
+            x:Name="OrderPlaced"
+            Command="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding RadioButton.OrderPlaced, UpdateSourceTrigger=PropertyChanged}"
+            Content="Заказ сделан"
+            FontSize="18"
+            
+            Margin="40,722,1174,10"/>
+
+        <RadioButton
+            x:Name="ArrivedAtTheWarehouse"
+            Command="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding RadioButton.ArrivedAtTheWarehouse, UpdateSourceTrigger=PropertyChanged}"
+            Content="Поступил на склад "
+        
+        FontSize="18"
+        Margin="197,722,987,10"/>
+
+        <RadioButton
+            x:Name="Sent"
+            Command="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding RadioButton.Sent, UpdateSourceTrigger=PropertyChanged}"
+            
+        Content="Отправлен"
+        FontSize="18"
+        Margin="394,722,852,10"/>
+
+        <RadioButton
+            x:Name="SmartCustomsCheck"
+            Command="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding RadioButton.SmartCustomsCheck, UpdateSourceTrigger=PropertyChanged}"
+            
+        Content="На таможенной проверке"
+        FontSize="18"
+        Margin="519,722,602,10"/>
+
+        <RadioButton
+            x:Name="InFilial"
+            Command="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding RadioButton.InFilial, UpdateSourceTrigger=PropertyChanged}"
+            
+         Content="На почте"                         
+         FontSize="18"
+         Margin="769,722,494,10"/>
+        <TextBlock
+            Text="Admin Panel"
+            FontWeight="Bold"
+            FontSize="80" Margin="434,0,434,667"
+            Foreground="Black"/>
+        <Button
+            Command="{Binding RemoveOrder}"
+            Content="Удалить товар из склада"
+            Width="210"
+            FontSize="15"
+            materialDesign:ButtonAssist.CornerRadius="12"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top" Margin="0,131,0,0"/>
+
+
+    </Grid>
+</UserControl>

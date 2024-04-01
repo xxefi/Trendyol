@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Trendyol.Views.UserBalanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:viewModel="clr-namespace:Trendyol.ViewModels"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance Type=viewModel:UserBalanceViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid>
+            <Grid>
+                <Image Source="/Trendyol2.jpg" Margin="-44,-250,-14,-248"
+Opacity="1">
+                    <Image.Effect>
+                        <BlurEffect Radius="10"/>
+                    </Image.Effect>
+                </Image>
+                <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+                <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleX="-1"/>
+                    </Image.RenderTransform>
+                </Image>
+
+                <TabControl/>
+                <Border
+ MinWidth="500"
+ Margin="2,0,-14,0"
+ Background="White"
+ VerticalAlignment="Center"
+ Padding="30"
+ MaxWidth="150"
+ CornerRadius="50" Height="216" RenderTransformOrigin="0.5,0.5">
+
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform AngleX="-0.004"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.25"/>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <Border.Effect>
+                        <DropShadowEffect
+     BlurRadius="100"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock
+         Text="Баланс"
+         Foreground="Black"
+         TextAlignment="Center"
+         FontSize="20"
+         FontWeight="Bold"
+         Margin="0,0,0,20" Width="77"/>
+                        <Grid/>
+                        <Button
+             Command="{Binding Pay}"
+         Content="Пополнить баланс"
+         Style="{StaticResource MaterialDesignPaperDarkButton}"
+                     FontSize="16"
+         Foreground="#f27a1a"
+         Margin="0,70,-10,20" Height="39" Width="401"
+             md:ButtonAssist.CornerRadius="10"
+             BorderBrush="#f27a1a"
+             BorderThickness="2"/>
+
+                    </StackPanel>
+
+                </Border>
+                <Image
+                    Source="/Wallet.png" Margin="593,332,694,356"/>
+                <TextBlock
+                    FontSize="24"
+                    Margin="683,356,443,385">
+                    <Run Text="{Binding Balance}"
+                         Foreground="Black"/>
+                    <Run Text="₼"
+                         Foreground="Black"/>
+                </TextBlock>
+            </Grid>
+            
+            <Button
+ Width="64" VerticalAlignment="Top"
+                Style="{StaticResource MaterialDesignFlatLightBgButton}" 
+                x:Name="BackCommand"
+                Margin="592,300,0,0" 
+                Height="38"
+                HorizontalAlignment="Left"
+                Foreground="#f27a1a"
+                md:ButtonAssist.CornerRadius="8"
+                Command="{Binding Back}" 
+                BorderBrush="White"
+                Background="White">
+                <md:PackIcon
+                Width="63" Kind="ArrowBackCircle" Height="31" HorizontalAlignment="Center"/>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

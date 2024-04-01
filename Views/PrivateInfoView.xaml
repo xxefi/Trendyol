@@ -1,0 +1,238 @@
+﻿<UserControl x:Class="Trendyol.Views.PrivateInfoWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModels="clr-namespace:Trendyol.ViewModels" 
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModels:PrivateInfoViewModel}"
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid>
+            <Image Source="/Trendyol2.jpg" Margin="-44,-250,-14,-248"
+   Opacity="1">
+                <Image.Effect>
+                    <BlurEffect Radius="10"/>
+                </Image.Effect>
+            </Image>
+            <Image Source="/signup_img.png" Margin="-64,110,978,124"/>
+            <Image Source="/signup_img.png" Margin="1434,114,-574,128">
+                <Image.RenderTransform>
+                    <ScaleTransform ScaleX="-1"/>
+                </Image.RenderTransform>
+            </Image>
+
+            <TabControl/>
+            <Border
+    MinWidth="500"
+    Margin="-55,0,-90,0"
+    Background="#fff"
+    VerticalAlignment="Center"
+    Padding="30"
+    MaxWidth="150"
+    CornerRadius="50" Height="636" RenderTransformOrigin="0.5,0.5">
+
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1"/>
+                        <SkewTransform AngleX="-0.341"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-1.577"/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <Border.Effect>
+                    <DropShadowEffect
+        BlurRadius="100"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock
+            Text="Информация об аккаунте"
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="Black"
+            Margin="20,0,0,20" Width="261"/>
+                    <Grid/>
+                    <TextBox
+                    TextAlignment="Center"
+                    BorderBrush="Red"
+                    SelectionBrush="Red"
+                    SelectionTextBrush="Red"
+                    IsEnabled="False"
+                Text="{Binding Name}"
+            x:Name="nameBoxLogin"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55">
+
+                    </TextBox>
+                    <TextBox
+                        TextAlignment="Center"
+                        IsEnabled="False"
+                        Margin="0,5,0,0"
+                Text="{Binding Surname}"
+            x:Name="lastNameBoxLogin"
+                BorderBrush="Red"
+                SelectionBrush="Red"
+                SelectionTextBrush="Red"
+            Foreground="Black"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55">
+
+                    </TextBox>
+                    <TextBox
+                        TextAlignment="Center"
+                        IsEnabled="False"
+                        Margin="0,5,0,0"
+                Text="{Binding FIN}"
+            x:Name="textBoxLogin"
+           Foreground="Black"
+           FontSize="16"
+                BorderBrush="red"
+                SelectionBrush="red"
+                SelectionTextBrush="red"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="286" Height="55">
+
+                    </TextBox>
+                    <TextBox
+                        TextAlignment="Center"
+                        Margin="0,5,0,0"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Email}"
+        x:Name="emailBox"
+        Foreground="Black"
+                        BorderBrush="#f27a1a"
+SelectionBrush="#f27a1a"
+SelectionTextBrush="#f27a1a"
+        FontSize="16"
+        Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="284" Height="59">
+                    </TextBox>
+                    <TextBox
+                        TextAlignment="Center"
+                        Margin="0,5,0,0"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Phone}"
+                x:Name="FINBox"
+                Foreground="Black"
+                FontSize="16"
+                Width="284"
+                BorderBrush="#f27a1a"
+                SelectionBrush="#f27a1a"
+                SelectionTextBrush="#f27a1a"
+                Height="61"/>
+                    <TextBox
+                        TextAlignment="Center"
+                        Margin="0,5,0,0"
+                        md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                Text="{Binding Login}"
+            x:Name="PhoneBox"
+            Foreground="Black"
+            FontSize="16"
+                        BorderBrush="#f27a1a"
+                        SelectionBrush="#f27a1a"
+                        SelectionTextBrush="#f27a1a"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            Width="284"
+            Height="61">
+                    </TextBox>
+
+                    <TextBox
+                        TextAlignment="Center"
+                    IsEnabled="False"
+                    Text="{Binding Balance}"
+                    Margin="0,5,0,0"
+                    md:TextFieldAssist.UnderlineBrush="#f27a1a"
+                    x:Name="BalanceBox"
+                    Foreground="Black"
+                    FontSize="16"
+                    BorderBrush="Red"
+                    SelectionBrush="Red"
+                    SelectionTextBrush="Red"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Width="284"
+                    Height="52">
+                    </TextBox>
+                    <Button
+                Command="{Binding Save}"
+            Content="Сохранить изменения"
+            Style="{StaticResource MaterialDesignPaperDarkButton}"
+            Foreground="#f27a1a"
+            Margin="0,20,-10,5" Height="38" Width="402"
+                md:ButtonAssist.CornerRadius="10"
+                BorderBrush="#f27a1a"
+                BorderThickness="2"/>
+                    <Button
+                    Command="{Binding Delete}"
+                    Content="Удалить аккаунт"
+                    x:Name="RemoveAccount"
+                    Margin="10, 0, 0, 5"
+                    BorderBrush="Red"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"
+                    Foreground="Red"
+                    md:ButtonAssist.CornerRadius="10"
+                    Width="403" Height="33"/>
+
+                </StackPanel>
+
+            </Border>
+        </Grid>
+        <TextBlock
+        Foreground="Black"
+        Text="Имя"
+        FontSize="20"
+        FontWeight="Bold"
+        Margin="493,153,828,585"/>
+        <TextBlock
+        Foreground="Black"
+        Text="Фамилия"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="464,216,810,522"/>
+        <TextBlock
+        Foreground="Black"    
+        Text="FIN"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="493,277,839,461"/>
+        <TextBlock
+        Foreground="Black"    
+        Text="Почта"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="480,342,828,396"/>
+        <TextBlock
+        Foreground="Black"    
+        Text="Логин"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="480,403,828,335"/>
+        <TextBlock
+        Foreground="Black"    
+        Text="Номер"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="477,468,823,270"/>
+        <TextBlock
+        Foreground="Black"    
+        Text="Баланс"
+        FontSize="19"
+        FontWeight="Bold"
+        Margin="477,531,823,207"/>
+        <Button
+       Name="BackCommand"
+       Command="{Binding Back}"
+   Foreground="#f27a1a"
+   Style="{StaticResource MaterialDesignFlatLightBgButton}"
+    Background="White"
+            BorderBrush="White"
+HorizontalAlignment="Left"
+       md:ButtonAssist.CornerRadius="8"
+VerticalAlignment="Top" Height="38" Width="64" Margin="514,91,0,0">
+            <md:PackIcon
+   Kind="ArrowBackCircle" Height="31" Width="63" HorizontalAlignment="Center"/>
+        </Button>
+    </Grid>
+</UserControl>
