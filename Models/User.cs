@@ -12,19 +12,19 @@ namespace Trendyol.Models
     {
         [Key]
         public int UserId {  get; set; }
-        [Required, MaxLength(10)]
+        [Required]
         public string Name { get; set; }
-        [Required, MaxLength(15)]
+        [Required]
         public string Surname { get; set; }
-        [Required, MaxLength(255)]
+        [Required]
         public string Login { get; set; }
-        [Required, MaxLength(255)]
+        [Required]
         public string Email { get; set; }
-        [Required, MaxLength(255)]
+        [Required]
         public string Password { get; set; }
-        [Required, MaxLength(7)]
+        [Required]
         public string FIN { get; set; }
-        [Required, MaxLength(13)]
+        [Required]
         public string Phone { get; set; }
         [Required]
         public decimal Balance {  get; set; }
