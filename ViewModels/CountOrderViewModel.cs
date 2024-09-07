@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -52,9 +52,6 @@ namespace Trendyol.ViewModels
             get => _selectedProduct;
             set => Set(ref _selectedProduct, value);
         }
-
-
-       
         public CountOrderViewModel(INavigationService navigationService, IMessenger messenger, ApplicationDbContext context, CurrentUserService currentUserService)
         {
             _navigationService = navigationService;
@@ -70,8 +67,6 @@ namespace Trendyol.ViewModels
             
 
         }
-
-
         public RelayCommand Back
         {
             get => new(
@@ -88,75 +83,66 @@ namespace Trendyol.ViewModels
                 {
                     try
                     {
-                        if (_selectedProduct != null)
-                        {
-                            var wareHouseProduct = _context.WareHouse.FirstOrDefault(p => p.ProductId == _selectedProduct.Id);
-                            if (wareHouseProduct != null)
-                            {
-                                if (wareHouseProduct.ProductCount < Count)
-                                {
-                                    MessageBox.Show("На складе отсутствует столько количество этого товара.");
-                                    Count = 0;
-                                    _navigationService.NavigateTo<WareHouseViewModel>();
-                                    return;
-                                }
-                                
-                                else if (Count == 0)
-                                {
-                                    MessageBox.Show("Напишите количество товара", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    return;
-                                }
-
-                                else if (_currentUserService.Balance < _selectedProduct.Price * Count)
-                                {
-                                    MessageBox.Show("Недостаточно средств", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    Count = 0;
-                                    _navigationService.NavigateTo<WareHouseViewModel>();
-                                    return;
-                                }
-                                
-                            }
-
-                            var product = _addCargoService.AddProduct(_currentUserService.UserId, _selectedProduct.Name, _selectedProduct.Description, _selectedProduct.Price, _selectedProduct.Category, Count);
-                            Order order = new Order
-                            {
-                                UserId = _currentUserService.UserId,
-                                Product = product.Name,
-                                ProductsCount = Count,
-                                Status = "Заказ сделан",
-                                Created = DateTime.Now,
-                            };
-                            
-                            _context.Products.Add(product);
-                            _context.SaveChanges();
-
-                            _context.Orders.Add(order);
-                            _context.SaveChanges();
-
-                            var user = _context.Users.FirstOrDefault(u => u.UserId == _currentUserService.UserId);
-                            if (user != null)
-                            {
-                                user.Balance -= Math.Round(_selectedProduct.Price * Count, 2);
-                                _context.SaveChanges();
-                            }
-                            _currentUserService.Balance -= Math.Round(_selectedProduct.Price * Count, 2);
-                            _context.SaveChanges();
-
-                            wareHouseProduct.ProductCount -= Count;
-                            _context.SaveChanges();
-
-                            _selectedProduct.Count -= Count;
-                            _context.SaveChanges();
-
-                            MessageBox.Show("Товар успешно куплен");
-                            Count = 0;
-                            _navigationService.NavigateTo<WareHouseViewModel>();
-                            
-                        }
-                        else
+                        if (_selectedProduct == null)
                         {
                             MessageBox.Show("Ошибка при покупке товара");
                             return;
+                        }
+                        var wareHouseProduct = _context.WareHouse.FirstOrDefault
+                        (p => p.ProductId == _selectedProduct.Id);
+
+                        if (wareHouseProduct == null)
+                        {
+                            MessageBox.Show("Товар не найден на складе");
+                            return;
+                        }
+                        switch (Count)
+                        {
+                            case 0:
+                                MessageBox.Show("Укажите количество товара", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            case > 0 when wareHouseProduct.ProductCount < Count:
+                                MessageBox.Show("На складе недостаточно товара.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                Count = 0;
+                                _navigationService.NavigateTo<WareHouseViewModel>();
+                                return;
+                            case > 0 when _currentUserService.Balance < _selectedProduct.Price * Count:
+                                MessageBox.Show("Недостаточно средств для покупки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                Count = 0;
+                                _navigationService.NavigateTo<WareHouseViewModel>();
+                                return;
+                            default:
+                                var product = _addCargoService.AddProduct(
+                                    _currentUserService.UserId,
+                                    _selectedProduct.Name,
+                                    _selectedProduct.Description,
+                                    _selectedProduct.Price,
+                                    _selectedProduct.Category,
+                                    Count);
+
+                                var order = new Order
+                                {
+                                    UserId = _currentUserService.UserId,
+                                    Product = product.Name,
+                                    ProductsCount = Count,
+                                    Created = DateTime.Now,
+                                };
+                                _context.Products.Add(product);
+                                _context.Orders.Add(order);
+                                wareHouseProduct.ProductCount -= Count;
+
+                                var user = _context.Users.FirstOrDefault(
+                                    u => u.UserId == _currentUserService.UserId);
+                                if (user != null)
+                                    user.Balance -= _selectedProduct.Price * Count;
+                                _currentUserService.Balance -= _selectedProduct.Price * Count;
+                                _selectedProduct.Count -= Count;
+
+                                _context.SaveChanges();
+                                MessageBox.Show("Товар успешно куплен");
+                                Count = 0;
+                                _navigationService.NavigateTo<WareHouseViewModel>();
+                                break;
                         }
                     }
                     catch (Exception ex)
