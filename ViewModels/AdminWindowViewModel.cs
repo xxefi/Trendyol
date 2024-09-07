@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -103,19 +103,13 @@ namespace Trendyol.ViewModels
         public RelayCommand Exit
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<LoginWindowViewModel>();
-                });
+                () => _navigationService.NavigateTo<LoginWindowViewModel>());
         }
 
         public RelayCommand AddOrder
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<AddOrderViewModel>();
-                });
+                () => _navigationService.NavigateTo<AddOrderViewModel>());
         }
 
         public RelayCommand Check
@@ -125,49 +119,52 @@ namespace Trendyol.ViewModels
                 {
                     try
                     {
-                        
-                        if (RadioButton.OrderPlaced)
+                        if (SelectedOrder == null)
                         {
-                            if (SelectedOrder.Status == "Заказ сделан")
-                            {
-                                SelectedOrder.Status = "Заказ сделан";
-                            }
-                        }
-                        else if (RadioButton.ArrivedAtTheWarehouse)
-                        {
-                            if (SelectedOrder.Status == "Заказ сделан" || SelectedOrder.Status == "Поступил на склад")
-                            {
-                                SelectedOrder.Status = "Поступил на склад";
-                            }
-                        }
-                        else if (RadioButton.Sent)
-                        {
-                            if (SelectedOrder.Status == "Поступил на склад" || SelectedOrder.Status == "Отправлен")
-                            {
-                                SelectedOrder.Status = "Отправлен";
-                            }
-                        }
-                        else if (RadioButton.SmartCustomsCheck)
-                        {
-                            if (SelectedOrder.Status == "Отправлен" || SelectedOrder.Status == "На таможенной проверке")
-                            {
-                                
-                                SelectedOrder.Status = "На таможенной проверке";
-                            }
-                        }
-                        else if (RadioButton.InFilial)
-                        {
-                            if (SelectedOrder.Status == "На таможенной проверке" || SelectedOrder.Status == "На почте")
-                            {
-                                SelectedOrder.Status = "На почте";
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Невозможно перенести заказ на этот этап");
+                            MessageBox.Show("Заказ не выбран.");
                             return;
                         }
-                        _context.SaveChanges();
+                        string newStatus = SelectedOrder.Status;
+                        switch (SelectedOrder.Status)
+                        {
+                            case "Заказ сделан":
+                                if (RadioButton.OrderPlaced)
+                                    newStatus = "Заказ сделан";
+                                else if (RadioButton.ArrivedAtTheWarehouse)
+                                    newStatus = "Поступил на склад";
+                                break;
+
+                            case "Поступил на склад":
+                                if (RadioButton.Sent)
+                                    newStatus = "Отправлен";
+                                else if (RadioButton.ArrivedAtTheWarehouse)
+                                    newStatus = "Поступил на склад";
+                                break;
+
+                            case "Отправлен":
+                                if (RadioButton.SmartCustomsCheck)
+                                    newStatus = "На таможенной проверке";
+                                break;
+
+                            case "На таможенной проверке":
+                                if (RadioButton.InFilial)
+                                    newStatus = "На почте";
+                                break;
+                            case "На почте":
+                                MessageBox.Show("Заказ уже на почте");
+                                return;
+                            default:
+                                MessageBox.Show("Невозможно перенести заказ на этот этап.");
+                                break;
+                        }
+                        if (SelectedOrder.Status != newStatus)
+                        {
+                            SelectedOrder.Status = newStatus;
+                            _context.SaveChanges();
+                            MessageBox.Show("Статус заказа успешно обновлен.");
+                        }
+                        else
+                            MessageBox.Show("Не удалось изменить статус заказа");
                     }
                     catch (Exception ex)
                     {
@@ -178,25 +175,30 @@ namespace Trendyol.ViewModels
 
         public RelayCommand RemoveOrder
         {
-            get => new(() =>
-            {
-                _navigationService.NavigateTo<RemoveOrderViewModel>();
-            });
+            get => new(
+                () => _navigationService.NavigateTo<RemoveOrderViewModel>());
         }
 
         public RelayCommand SearchCommand
         {
             get => new(
-                () =>
-                {
-                    Filter();
-                });
+                async() => await Filter());
         }
 
-        private void Filter()
+        private async Task Filter()
         {
-            Order = new ObservableCollection<Order>(_context.Orders
-                .Where(o => o.Product.Contains(Search)));
+            try
+            {
+                var filteredOrders = await _context.Orders
+                    .Where(o => o.Product.Contains(Search))
+                    .ToListAsync();
+                Order = new ObservableCollection<Order>(filteredOrders);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при фильтрации данных: {ex.Message}");
+            }
+
         }
     }
 }
