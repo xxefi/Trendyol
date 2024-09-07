@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
@@ -27,9 +27,7 @@ public class RemoveAccountViewModel : ViewModelBase
         set
         {
             if (Regex.IsMatch(value, @"^\d{2}[A-Za-z]{2}\d{2}[A-Za-z]{1}$") || string.IsNullOrEmpty(value))
-            {
                 Set(ref _FIN, value);
-            }
             else
             {
                 MessageBox.Show("Недействительный FIN");
@@ -44,9 +42,7 @@ public class RemoveAccountViewModel : ViewModelBase
         set
         {
             if (Regex.IsMatch(value, @"^\+\d{3}\d{9}$") || string.IsNullOrEmpty(value))
-            {
                 Set(ref _phone, value);
-            }
             else
             {
                 MessageBox.Show("Недействительный номер телефона");
@@ -71,10 +67,8 @@ public class RemoveAccountViewModel : ViewModelBase
 
     public RelayCommand Login
     {
-        get => new(() =>
-        {
-            _navigationService.NavigateTo<LoginWindowViewModel>();
-        });
+        get => new(
+            () => _navigationService.NavigateTo<LoginWindowViewModel>());
     }
 
     public RelayCommand Delete
@@ -110,10 +104,7 @@ public class RemoveAccountViewModel : ViewModelBase
     public RelayCommand Back
     {
         get => new(
-            () =>
-            {
-                _navigationService.NavigateTo<PrivateInfoViewModel>();
-            });
+            () => _navigationService.NavigateTo<PrivateInfoViewModel>());
     }
     
     
