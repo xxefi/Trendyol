@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MaterialDesignThemes.Wpf;
@@ -104,25 +104,21 @@ namespace Trendyol.ViewModels
         {
             try
             {
-                if (_superAdminService.SuperAdminLogin(Email, Password))
-                {
-                    _navigationService.NavigateTo<SuperAdminViewModel>();
-                }
-                else if (_adminService.AdminLogin(Email, Password))
-                {
-                    _navigationService.NavigateTo<AdminWindowViewModel>();
-                }
-                else if (_usersService.UserLogin(Email, Password))
+                if (await _superAdminService.SuperAdminLogin(Email, Password))
+                    await _navigationService.NavigateTo<SuperAdminViewModel>();
+
+                else if (await _adminService.AdminLogin(Email, Password))
+                    await _navigationService.NavigateTo<AdminWindowViewModel>();
+
+                else if (await _usersService.UserLogin(Email, Password))
                 {
                     var user = _usersService.GetUser(Email);
                     _currentUserService.UpdateUserData(user);
-                    _navigationService.NavigateTo<TrendyolWindowViewModel>();
+                    await _navigationService.NavigateTo<TrendyolWindowViewModel>();
                 }
                 else
                 {
-                    ErrorView error = new ErrorView();
-                    error.Show();
-                    Password = "";
+                    MessageBox.Show("Неправильный e-mail или пароль");
                     return;
                 }
                 Email = "";
@@ -137,10 +133,7 @@ namespace Trendyol.ViewModels
         public RelayCommand Forgot
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<ForgotPasswordViewModel>();
-                });
+                () => _navigationService.NavigateTo<ForgotPasswordViewModel>());
         }
 
         public RelayCommand Guest
@@ -150,9 +143,7 @@ namespace Trendyol.ViewModels
                 {
                     MessageBoxResult result = MessageBox.Show("Вы входите как гость. Вам не будут доступны функции, которые доступны обычному пользователю, продолжить?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
-                    {
                         _navigationService.NavigateTo<TrendyolGuestViewModel>();
-                    }
                 });
         }
 
