@@ -1,7 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,9 +73,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^[A-Z][a-z]+$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _name, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительный имя");
@@ -89,9 +88,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^[A-Z][a-z]+$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _surname, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительная фамилия");
@@ -106,9 +103,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^[a-zA-Z0-9_-]{3,16}$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _login, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительный логин");
@@ -123,9 +118,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _email, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительная почта");
@@ -140,9 +133,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{8,}$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _password, value);
-                }
                 else
                 {
                     MessageBox.Show("Пароль должен содержать как минимум 8 символов," +
@@ -170,11 +161,8 @@ namespace Trendyol.ViewModels
             get => _FIN;
             set
             {
-                
                 if (Regex.IsMatch(value, @"^\d{2}[A-Za-z]{2}\d{2}[A-Za-z]{1}$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _FIN, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительный FIN");
@@ -189,9 +177,7 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, @"^\+\d{3}\d{9}$") || string.IsNullOrEmpty(value))
-                {
                     Set(ref _phone, value);
-                }
                 else
                 {
                     MessageBox.Show("Недействительный номер телефона");
@@ -214,7 +200,7 @@ namespace Trendyol.ViewModels
                 {
                     _navigationService.NavigateTo<LoginWindowViewModel>();
                 }
-              );
+            );
         }
 
         public RelayCommand Register
@@ -224,50 +210,32 @@ namespace Trendyol.ViewModels
                 {
                     try
                     {
-                        using (ApplicationDbContext context = new ApplicationDbContext())
+                        if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Surname)
+                        && string.IsNullOrWhiteSpace(Login) && string.IsNullOrWhiteSpace(Email)
+                        && string.IsNullOrWhiteSpace(FIN) && string.IsNullOrWhiteSpace(Phone)
+                        && string.IsNullOrWhiteSpace(Password) && string.IsNullOrWhiteSpace(TryPassword))
                         {
-                            if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Surname)
-                            && string.IsNullOrWhiteSpace(Login) && string.IsNullOrWhiteSpace(Email)
-                            && string.IsNullOrWhiteSpace(FIN) && string.IsNullOrWhiteSpace(Phone)
-                            && string.IsNullOrWhiteSpace(Password) && string.IsNullOrWhiteSpace(TryPassword))
-                            {
-                                MessageBox.Show("Поля не могут быть пустыми");
-                                return;
-                            }
-                            if (context.Users.Any(u => u.Login == Login || u.Email == Email || u.FIN == FIN || u.Phone == Phone))
-                            {
-                                MessageBox.Show("Пользователь с такими данными уже существует в базе данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                Name = "";
-                                Surname = "";
-                                Login = "";
-                                Email = "";
-                                Password = "";
-                                TryPassword = "";
-                                FIN = "";
-                                Phone = "";
-                                return;
-                            }
-                            else if (TryPassword != Password)
-                            {
-                                MessageBox.Show("Вы неправильно ввели повторный код", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                return;
-                            }
-                            else
-                            {
-                                var newuser = _userservice.UserRegister(Name, Surname, Login, Email, Password, FIN, Phone);
-                                context.Users.Add(newuser);
-                                context.SaveChanges();
-                                MessageBox.Show("Успешная регистрация");
-                                Name = "";
-                                Surname = "";
-                                Login = "";
-                                Email = "";
-                                Password = "";
-                                TryPassword = "";
-                                FIN = "";
-                                Phone = "";
-                                _navigationService.NavigateTo<LoginWindowViewModel>();
-                            }
+                            MessageBox.Show("Поля не могут быть пустыми");
+                            return;
+                        }
+                        if (_context.Users.Any(u => u.Login == Login || u.Email == Email || u.FIN == FIN || u.Phone == Phone))
+                        {
+                            MessageBox.Show("Пользователь с такими данными уже существует в базе данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else if (TryPassword != Password)
+                        {
+                            MessageBox.Show("Вы неправильно ввели повторный код", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                        {
+                            var newuser = _userservice.UserRegister(Name, Surname, Login, Email, Password, FIN, Phone);
+                            _context.Users.Add(newuser);
+                            _context.SaveChanges();
+                            MessageBox.Show("Успешная регистрация");
+                            _navigationService.NavigateTo<LoginWindowViewModel>();
+                            ClearFields();
                         }
                     }
                     catch (Exception ex)
@@ -275,6 +243,17 @@ namespace Trendyol.ViewModels
                         MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 });
+        }
+        public void ClearFields()
+        {
+            Name = "";
+            Surname = "";
+            Login = "";
+            Email = "";
+            Password = "";
+            TryPassword = "";
+            FIN = "";
+            Phone = "";
         }
     }
 }
