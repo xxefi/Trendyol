@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +25,7 @@ namespace Trendyol.ViewModels
         private readonly INavigationService _navigationService;
         private readonly ApplicationDbContext _context;
         private readonly CurrentUserService _currentUserService;
-        private readonly User user;
+        private readonly User user = new();
 
         private string _name;
         private string _surname;
@@ -82,91 +82,83 @@ namespace Trendyol.ViewModels
             _navigationService = navigationService;
             _context = context;
             _currentUserService = currentUserService;
-            user = new User();
 
             _currentUserService.PropertyChanged += (sender, args) =>
             {
-                if (args.PropertyName == nameof(CurrentUserService.Name))
+                switch (args.PropertyName)
                 {
-                    Name = _currentUserService.Name;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.Surname))
-                {
-                    Surname = _currentUserService.Surname;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.FIN))
-                {
-                    FIN = _currentUserService.FIN;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.Phone))
-                {
-                    Phone = _currentUserService.Phone;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.Email))
-                {
-                    Email = _currentUserService.Email;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.Login))
-                {
-                    Login = _currentUserService.Login;
-                }
-                else if (args.PropertyName == nameof(CurrentUserService.Balance))
-                {
-                    Balance = _currentUserService.Balance;
+                    case nameof(CurrentUserService.Name): Name = _currentUserService.Name;
+                        break;
+                    case nameof(CurrentUserService.Surname): Surname = _currentUserService.Surname;
+                        break;
+                    case nameof(CurrentUserService.FIN): FIN = _currentUserService.FIN;
+                        break;
+                    case nameof(_currentUserService.Phone): Phone = _currentUserService.Phone;
+                        break;
+                    case nameof(_currentUserService.Email): Email = _currentUserService.Email;
+                        break;
+                    case nameof(_currentUserService.Login): Login = _currentUserService.Login;
+                        break;
+                    case nameof(_currentUserService.Balance): Balance = _currentUserService.Balance;
+                        break;
+                    default:
+                        break;
                 }
             };
-            
             _currentUserService.UpdateUserData(user);
         }
 
         public RelayCommand Back
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<TrendyolWindowViewModel>();
-                });
+                () => _navigationService.NavigateTo<TrendyolWindowViewModel>());
         }
 
-        public RelayCommand Save
+        public RelayCommand Save => new(async () =>
         {
-            get => new(
-                () =>
+            try
+            {
+                var user = _context.Users.FirstOrDefault(u => u.Email == _currentUserService.Email
+                    && u.Phone == _currentUserService.Phone && u.Login == _currentUserService.Login);
+                if (user != null)
                 {
-                    try
-                    {
-                        var user = _context.Users.SingleOrDefault(u => u.Email == _currentUserService.Email
-                            && u.Phone == _currentUserService.Phone && u.Login == _currentUserService.Login);
-                        if (user != null)
-                        {
-                            user.Email = Email;
-                            user.Phone = Phone;
-                            user.Login = Login;
-                            _currentUserService.Email = Email;
-                            _currentUserService.Phone = Phone;
-                            _currentUserService.Login = Login;
+                    user.Email = Email;
+                    user.Phone = Phone;
+                    user.Login = Login;
+                    _currentUserService.Email = Email;
+                    _currentUserService.Phone = Phone;
+                    _currentUserService.Login = Login;
 
-                            _context.SaveChanges();
-                            MessageBox.Show("Изменения сохранены");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Не удалось сохранить изменения");
-                            return;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                });
-        }
+                    await _context.SaveChangesAsync();
+                    MessageBox.Show("Изменения сохранены");
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось сохранить изменения");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        });
 
         public RelayCommand Delete
         {
             get => new(() =>
             {
-                _navigationService.NavigateTo<RemoveAccountViewModel>();
+                var user = _context.Users.FirstOrDefault(u => u.UserId == _currentUserService.UserId);
+                if (user != null)
+                {
+                    MessageBoxResult result1 = MessageBox.Show("Вы действительно хотите удалить аккаунт? Все данные об покупке, баланс, удалится невозвратно", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result1 == MessageBoxResult.Yes)
+                    {
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
+                        _navigationService.NavigateTo<LoginWindowViewModel>();
+                    }
+                }
             });
         }
 
