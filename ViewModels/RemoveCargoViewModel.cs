@@ -1,6 +1,7 @@
-﻿
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -48,10 +49,7 @@ namespace Trendyol.ViewModels
         public RelayCommand Back
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<TrendyolWindowViewModel>();
-                });
+                () => _navigationService.NavigateTo<TrendyolWindowViewModel>());
         }
 
         public RelayCommand Gancel
@@ -64,20 +62,16 @@ namespace Trendyol.ViewModels
                         if (SelectedOrder == null)
                         {
                             MessageBox.Show("Выберите заказ");
+                            return;
                         }
                         else
                         {
-                            Order order = _context.Orders.FirstOrDefault(o => o.Product == _selectedOrder.Product);
-                            if (order != null)
-                            {
+                                Order? order = _context.Orders.FirstOrDefault(o => o.Product == _selectedOrder.Product);
                                 if (_selectedOrder.Status == "Заказ сделан")
                                 {
-                                    Products products = _context.Products.FirstOrDefault(o => o.Name == _selectedOrder.Product);
-                                    if (products != null)
-                                    {
-                                        _context.Products.Remove(products);
-                                        _context.SaveChanges();
-                                    }
+                                    Products? products = _context.Products.FirstOrDefault(o => o.Name == _selectedOrder.Product);
+                                    _context.Products.Remove(products);
+                                    _context.SaveChanges();
                                     _context.Orders.Remove(order);
                                     _context.SaveChanges();
                                     Order.Remove(order);
@@ -86,15 +80,14 @@ namespace Trendyol.ViewModels
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Невозможно отменить заказ, т.к он уже выехал и напрявляется к службе доставки", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Невозможно отменить заказ, т.к он уже выехал", "Ошибка");
                                     return;
                                 }
                             }
                         }
-                    }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message);
                     }
                 });
         }
