@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -47,13 +47,9 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^(0[1-9]|1[0-2])$"))
-                {
                     Set(ref _month, value);
-                }
                 else
-                {
                     return;
-                }
             }
         }
 
@@ -63,13 +59,9 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, "^(0[1-9]|[1-9][0-9])|(20[2-9]|209[0-9])$"))
-                {
                     Set(ref _year, value);
-                }
                 else
-                {
                     return;
-                }
             }
         }
 
@@ -79,15 +71,9 @@ namespace Trendyol.ViewModels
             set
             {
                 if (Regex.IsMatch(value, @"^\d{3}$"))
-                {
                     Set(ref _CVV, value);
-                    //OnPropertyChanged(nameof(CVV));
-                }
                 else
-                {
                     return;
-                }
-                    //PayEnabled = !string.IsNullOrWhiteSpace(CVV) && CVV.Length > 2;
             }
         }
 
@@ -102,19 +88,13 @@ namespace Trendyol.ViewModels
         public RelayCommand Back
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<UserBalanceViewModel>();
-                });
+                () => _navigationService.NavigateTo<UserBalanceViewModel>());
         }
 
         public RelayCommand QuestionCVV
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<ExampleCVVViewModel>();
-                });
+                () => _navigationService.NavigateTo<ExampleCVVViewModel>());
         }
 
         public RelayCommand Pay
@@ -143,10 +123,6 @@ namespace Trendyol.ViewModels
                             Year = "";
                             CVV = "";
                             _navigationService.NavigateTo<UserBalanceViewModel>();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Неизвестная ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                     catch (Exception ex)
