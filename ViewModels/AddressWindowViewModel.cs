@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +13,12 @@ namespace Trendyol.ViewModels
     {
         private readonly INavigationService _navigationService;
 
-        public AddressWindowViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
+        public AddressWindowViewModel(INavigationService navigationService) => _navigationService = navigationService;
 
         public RelayCommand Back
         {
             get => new(
-                () =>
-                {
-                    _navigationService.NavigateTo<TrendyolWindowViewModel>();
-                });
+                () => _navigationService.NavigateTo<TrendyolWindowViewModel>());
         }
     }
 }
